@@ -1,6 +1,4 @@
 
-
-
 //通过id获取dom对象
 function $id(id) {
     return document.getElementById(id);
@@ -39,16 +37,15 @@ function aryMatchItem(ary,name,item){
 //数组去重
 function aryUnique(ary)
 {
-    var n = {},r=[]; //n为hash表，r为临时数组
-    for(var i = 0; i < ary.length; i++) //遍历当前数组
-    {
-        if (!n[ary[i]]) //如果hash表中没有当前项
-        {
-            n[ary[i]] = true; //存入hash表
-            r.push(ary[i]); //把当前数组的当前项push到临时数组里面
+    var ret = [],
+        len = arr.length,
+        i = 0;
+    for (; i < len; i++) {
+        if (arr.indexOf(arr[i]) === i) {
+            ret.push(arr[i]);
         }
     }
-    return r;
+    return ret;
 }
 
 
