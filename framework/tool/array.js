@@ -18,18 +18,28 @@ exports.unique = function(ary)
     return r;
 };
 */
+
+exports.map = function (arr, callback) {
+    var ret = [],
+        len = arr.length,
+        i = 0, value;
+    for (; i < len; i++) {
+        value = callback(arr[i], i);
+        if (value !== null) {
+            ret.push(value);
+        }
+    }
+    return ret;
+    
+}
+
 //这样更高效
 exports.unique = function(arr){
-    var len = arr.length,
-        i = 0,
-        ret = [];
-        
-    for(;i<len;i++){
-        if(arr.indexOf(arr[i]) === i){
-            ret.push(arr[i]);
+    return this.map(arr, function (n, i) {
+        if (arr.indexOf(n) === i) {
+            return n;
         }
-        return ret;
-    }
+    });
 }
 
 
@@ -69,14 +79,19 @@ exports.matchItem = function(ary,key,value,del){
 
 
 // 取得数组中元素的某个属性 单独返回数组元素
-exports.listem = function (ary,key) {
-    var reary = []
-        , leg = ary.length;
-    for(var i=0; i<leg; i++){
-        var d = ary[i][key];
-        d?reary.push(d):0;
-    }
-    return reary;
+exports.listem = function (ary, key) {
+    return this.map(arr, function (n, i) {
+        if (n[key]) {
+            return n[key];
+        }
+    });
+    //var reary = []
+    //    , leg = ary.length;
+    //for(var i=0; i<leg; i++){
+    //    var d = ary[i][key];
+    //    d?reary.push(d):0;
+    //}
+    //return reary;
 };
 
 
